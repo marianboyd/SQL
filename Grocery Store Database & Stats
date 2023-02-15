@@ -1,0 +1,28 @@
+-- Create store database.
+
+CREATE TABLE store (id INTEGER PRIMARY KEY, name TEXT, item_type TEXT, quantity INTEGER, price INTEGER);
+
+INSERT INTO store VALUES (1, "chicken", "meat", 10, 6.99);
+INSERT INTO store VALUES (2, "beef", "meat", 10, 5.99);
+INSERT INTO store VALUES (3, "bananas", "fruit", 50, .79);
+INSERT INTO store VALUES (4, "apples", "fruit", 30, 2.50);
+INSERT INTO store VALUES (5, "strawberries", "fruit", 25, 5.00);
+INSERT INTO store VALUES (6, "broccoli crowns", "vegetable", 15, 3.75);
+INSERT INTO store VALUES (7, "onions", "vegetable", 50, 1.89);
+INSERT INTO store VALUES (8, "dog food", "pet supplies", 10, 27.00);
+INSERT INTO store VALUES (9, "cat food", "pet supplies", 7, 13.00);
+INSERT INTO store VALUES (10, "treats", "pet supplies", 5, 8.99);
+INSERT INTO store VALUES (11, "hummus", "snacks", 5, 3.89);
+INSERT INTO store VALUES (12, "popcorn", "snacks", 10, 5.99);
+INSERT INTO store VALUES (13, "chips", "snacks", 4, 4.00);
+INSERT INTO store VALUES (14, "ice cream", "dessert", 7, 9.00);
+INSERT INTO store VALUES (15, "sherbert", "dessert", 4, 7.99);
+
+
+-- Display database ordered by price.
+
+SELECT * FROM store ORDER BY price;
+
+
+--What is the maximum amount of any type of fruit in the store?
+SELECT MAX(quantity) FROM store WHERE item_type = 'fruit'
