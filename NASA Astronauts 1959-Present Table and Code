@@ -393,15 +393,36 @@ SELECT * FROM astronauts WHERE Military_Branch = 'US Air Force' AND Military_Ran
 SELECT Space_Walks_hr, Military_Branch FROM astronauts ORDER BY Space_Walks_hr DESC;
 
 
-/**SELECT Space_Walks_hr, Military Branch,
+
+
+SELECT Space_Walks, Military_Branch,
+    CASE
+        WHEN Space_Walks = 0 THEN '0 walk'
+        WHEN Space_Walks < 4 THEN '1-3 walks'
+        WHEN Space_Walks < 7 THEN '4-6 walks'
+        WHEN Space_Walks < 10 THEN '7-9 walks'
+        ELSE '10+ walks'
+    END AS space_walks_by_branch
+FROM astronauts GROUP BY Military_Branch;
+
+
+SELECT Space_Walks_hr, Military_Branch,
     CASE
         WHEN Space_Walks_hr = 0 THEN '0 hrs'
         WHEN Space_Walks_hr <=15 THEN '1-15 hrs'
         WHEN Space_Walks_hr <=30 THEN '16-30 hrs'
         WHEN Space_Walks_hr <=45 THEN '31-45 hrs'
         WHEN Space_Walks_hr <=60 THEN '46-60 hrs'
-        ELSE '61+ hrs',
+        ELSE '61+ hrs'
     END AS space_walk_hours_by_branch
 FROM astronauts GROUP BY Military_Branch;
-**/
+
+
+SELECT Name, Gender, Space_Flights, Alma_Mater, Year FROM astronauts WHERE Gender = 'Female' GROUP BY Alma_Mater Having Space_Flights > 1 ORDER BY Year;
+
+
+
+
+
+
 
