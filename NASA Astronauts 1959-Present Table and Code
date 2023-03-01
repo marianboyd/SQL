@@ -379,25 +379,32 @@ INSERT INTO astronauts(Name,Year,GroupNum,Status,Birth_Date,Birth_Place,Gender,A
 
 
 
+/** Find the minimum and maximum number of space flights and space walks **/
 SELECT MIN(Space_Flights) FROM astronauts WHERE Space_Flights > 0;
 SELECT MAX(Space_Flights) FROM astronauts;
 SELECT MIN(Space_Walks) FROM astronauts WHERE Space_Walks > 0;
 SELECT MAX(Space_Walks) FROM astronauts;
 
+
+/** Combine the number of hours in space walks and space flights as total number of hours spent in space. Display this number in descending order, grouped
+by the current status of the astronauts **/
 SELECT status, 
-    SUM(Space_Walks_hr + Space_FLight_hr) AS hours_in_space
+    SUM(Space_Walks_hr + Space_Flight_hr) AS hours_in_space
 FROM astronauts GROUP BY status ORDER BY hours_in_space;
 
+
+/** Display only the astronauts that are ranked as Captains in the US Air Force **/
 SELECT * FROM astronauts WHERE Military_Branch = 'US Air Force' AND Military_Rank = 'Captain';
 
+
+/** Display number of space walk hours performed by an astronaut with their associated military branch **/
 SELECT Space_Walks_hr, Military_Branch FROM astronauts ORDER BY Space_Walks_hr DESC;
 
 
-
-
+/** Categorize number of space walks and group by military branch **/
 SELECT Space_Walks, Military_Branch,
     CASE
-        WHEN Space_Walks = 0 THEN '0 walk'
+        WHEN Space_Walks = 0 THEN '0 walks'
         WHEN Space_Walks < 4 THEN '1-3 walks'
         WHEN Space_Walks < 7 THEN '4-6 walks'
         WHEN Space_Walks < 10 THEN '7-9 walks'
@@ -406,6 +413,7 @@ SELECT Space_Walks, Military_Branch,
 FROM astronauts GROUP BY Military_Branch;
 
 
+/** Categorize space walk hours and group by military branch **/
 SELECT Space_Walks_hr, Military_Branch,
     CASE
         WHEN Space_Walks_hr = 0 THEN '0 hrs'
@@ -418,6 +426,7 @@ SELECT Space_Walks_hr, Military_Branch,
 FROM astronauts GROUP BY Military_Branch;
 
 
+/** Display only female astronauts that have at least 1 space walk, grouped by their alma mater, and ordered by the year of their mission **/
 SELECT Name, Gender, Space_Flights, Alma_Mater, Year FROM astronauts WHERE Gender = 'Female' GROUP BY Alma_Mater Having Space_Flights > 1 ORDER BY Year;
 
 
