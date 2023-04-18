@@ -430,8 +430,3 @@ FROM astronauts GROUP BY Military_Branch;
 SELECT Name, Gender, Space_Flights, Alma_Mater, Year FROM astronauts WHERE Gender = 'Female' GROUP BY Alma_Mater Having Space_Flights > 1 ORDER BY Year;
 
 
-
-
-
-
-
