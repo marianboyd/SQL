@@ -1,4 +1,4 @@
-## 
+## Previewing the customers table 
 SELECT * FROM BIT_DB.customers LIMIT 20;
 
 ## How many order were place in January?
